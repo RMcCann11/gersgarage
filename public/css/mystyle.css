@@ -1,0 +1,21 @@
+#center{
+    text-align: center;
+}
+#red{
+    color: red;
+}
+#jtcolour{
+    background-color: seashell;
+}
+.keywords{
+    color: green;
+}
+img{
+     width: 180px; 
+     height: 180px; 
+}
+body{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
