@@ -27,7 +27,7 @@ if(isset($_POST["submit_details"])){
   $custComment = $_POST["cust_comment"];
   
   // create SQL statement
-  $sql = "INSERT INTO booking_detail(booking_id, user_id, vehicle_id, license_number, engine_type, booking_status_id, product_id, cust_name, cust_contact, cust_comment) VALUES('{$appoId}', '{$userId}', '{$vehicleId}', '{$licenseDetails}', '{$engineType}', '{$bookingStatusId}', '{$productId}', '{$custName}', '{$custContact}', '{$custComment}')";
+  $sql = "INSERT INTO booking_detail(booking_id, user_id, vehicle_id, license_number, engine_type, booking_status_id, product_id, cust_name, cust_contact, cust_comment) VALUES('{$bookingId}', '{$userId}', '{$vehicleId}', '{$licenseDetails}', '{$engineType}', '{$bookingStatusId}', '{$productId}', '{$custName}', '{$custContact}', '{$custComment}')";
   
   // Query database
   $result = mysqli_query($connection, $sql);
@@ -39,6 +39,7 @@ if(isset($_POST["submit_details"])){
   $result = mysqli_query($connection, $sql);
   $row = mysqli_fetch_assoc($result);
 
+  // Redirect user to confirmation page for latest booking
   $bookingDetailsId = $row['booking_detail_id'];
 
   header("location:booking_confirmation.php?bookingDetailsId=$bookingDetailsId");
