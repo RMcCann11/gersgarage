@@ -1,5 +1,6 @@
 <?php
 
+include '../private/session.php';
 include '../private/db_connection.php';
 include './booking.php';
 
