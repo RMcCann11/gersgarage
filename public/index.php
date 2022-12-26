@@ -120,7 +120,7 @@ for ($unix = $start; $unix <= $end; $unix += 86400) {
 
 <!-- (C) CONFIRM -->
 <p id = "red">Please confirm your booking by clicking the below button</p>
-  <form id="confirm" method="post" action="process_booking.php">
+  <form id="confirm" method="post" action="register_booking.php">
   <input type="hidden" name="user" value=<?php echo $userId; ?>>
   <input type="text" id="cdate" name="date" readonly>
   <input type="text" id="cslot" name="slot" readonly>

@@ -47,8 +47,8 @@ class Booking
     public function save($date, $slot, $user)
     {
         // (E1) CHECK SELECTED DATE
-        $min = strtotime("+" . APPO_MIN . " day");
-        $max = strtotime("+" . APPO_MAX . " day");
+        $min = strtotime("+" . BOOKING_MIN . " day");
+        $max = strtotime("+" . BOOKING_MAX . " day");
         $unix = strtotime($date);
         if ($unix < $min || $unix < $max) {
             $this->error = "Date must be between " . date("Y-m-d", $min) . " and " . date("Y-m-d", $max);
