@@ -1,13 +1,13 @@
 <?php
 
-require "../private/db_connection.php";
-require "./booking.php";
+include '../private/db_connection.php';
+include './booking.php';
 
 echo $_BOOKING->save ($_POST["date"], $_POST["slot"], $_POST["user"])
   ? "OK" : $_BOOKING->error;
 
 // Retrieve latest booking
-$sql = "SELECT * FROM booking ORDER BY appo_id DESC LIMIT 0,1";
+$sql = "SELECT * FROM booking ORDER BY booking_id DESC LIMIT 0,1";
 
 // Query database
 $result = mysqli_query($connection, $sql);
