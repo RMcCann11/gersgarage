@@ -4,16 +4,8 @@ include '../private/session.php';
 include '../private/db_connection.php';
 include './functions.php';
 
-?>
-
-<?php 
-
 $bookingId = $_GET["bookingId"];
 $userId = $_GET["userId"];
-
-?>
-
-<?php
 
 if(isset($_POST["submit_details"])){
 
@@ -46,7 +38,7 @@ if(isset($_POST["submit_details"])){
   
 }
   
-  ?> 
+?> 
 
 
 <!DOCTYPE html>
