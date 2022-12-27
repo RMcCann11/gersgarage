@@ -1,5 +1,6 @@
 <?php
 
+include '../private/session.php';
 include '../private/db_connection.php';
 include './functions.php';
 
@@ -79,6 +80,8 @@ $userName = $row['user_name'];
 
       <tr>
            <th>Booking Id</th>
+           <th>Booking Date</th>
+           <th>Booking Slot</th>
            <th>Vehicle</th>
            <th>Product</th>
            <th>License Number</th>
