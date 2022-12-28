@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = $_POST['password'];
 
     // create SQL statement
-    $sql = "SELECT user_name FROM user WHERE user_name='$username' and user_password='$pass'";
+    $sql = "SELECT * FROM user WHERE user_name='$username' and user_password='$pass'";
 
     // Query database
     $result = mysqli_query($connection, $sql);
@@ -20,11 +20,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // count the number of records found
     $count = mysqli_num_rows($result);
+    $userRole = $row['user_role'];
 
 // If result matched $username and $pass, table row must be 1 row
-    if ($count > 0) {
+    if ($count > 0 && $userRole == 'customer') {
         $_SESSION['loggedin_user'] = $row['user_name'];
         header('Location: index.php');
+    } else if ($count > 0 && $userRole == 'admin') {
+        $_SESSION['loggedin_user'] = $row['user_name'];
+        header('Location: ../private/admin/index.php');
     } else {
         $error = "Your Login Name or Password is invalid";
     }

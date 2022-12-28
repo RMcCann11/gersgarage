@@ -9,9 +9,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $username = $_POST['username'];
     $pass = $_POST['password'];
+    $userRole = 'customer';
 
     // create SQL statement
-    $sql = "INSERT INTO user (user_name, user_password) VALUES ('{$username}', '{$pass}')";
+    $sql = "INSERT INTO user (user_name, user_password, user_role) VALUES ('{$username}', '{$pass}', '{$userRole}')";
 
     // Query database
     $result = mysqli_query($connection, $sql);
