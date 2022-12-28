@@ -23,9 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userRole = $row['user_role'];
 
 // If result matched $username and $pass, table row must be 1 row
+    // If user role is customer redirect to public home page
     if ($count > 0 && $userRole == 'customer') {
         $_SESSION['loggedin_user'] = $row['user_name'];
         header('Location: index.php');
+        // If user role is admin redirect to admin area
     } else if ($count > 0 && $userRole == 'admin') {
         $_SESSION['loggedin_user'] = $row['user_name'];
         header('Location: ../private/admin/index.php');
