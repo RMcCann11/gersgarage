@@ -9,6 +9,7 @@ $username = $_SESSION['loggedin_user'];
         <h1 class="page-header">
             Welcome <?php echo $username?> to the administration portal.
         </h1>
-        <p>Please click any of the links to the side depending on the action you wish to take.</p>
+        <p>In terms of the actions that can be performed here, please see the menu to the left.</p>
+        <p>Please click on the appropriate link for the action you wish to take. </p>
     </div>
 </div>
