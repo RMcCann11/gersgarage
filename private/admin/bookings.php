@@ -1,3 +1,4 @@
+<?php include '../../public/functions.php'; ?>
 
 <div class="row">
 
@@ -16,8 +17,8 @@
             
     
         <option value="">Please select a date</option>
-        <option value="01/01/2023">01/01/2023</option>
-        <option value="02/01/2023">02/01/2023</option>
+        
+        <?php showBookingDatesInAdmin();?>
 
             
 

@@ -64,6 +64,38 @@ DELIMITER;
 
 }
 
+//Used to dynamically pull dates of bookings from database
+function showBookingDatesInAdmin(){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM booking";
+    
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+    while($row = mysqli_fetch_assoc($result)){
+
+$bookingDates = <<<DELIMITER
+
+ <option value="{$row["booking_date"]}">{$row["booking_date"]}</option>    
+
+DELIMITER;
+
+    echo $bookingDates;
+
+    }
+
+}
+
 //Used to retrieve the details of all bookings by a particular user
 function getBookingsByUser($id){
 
