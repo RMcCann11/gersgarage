@@ -302,6 +302,7 @@ $bookings = <<<DELIMITER
     <td>{$row["booking_id"]}</td>
     <td>{$row["booking_date"]}</td>
     <td>{$row["booking_slot"]}</td>
+    <td><a href=view_booking_detail.php?bookingId={$row["booking_id"]}>Please click here for further information regarding this booking</a></td>
 </tr>
 
 DELIMITER;

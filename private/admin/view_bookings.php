@@ -21,6 +21,7 @@ $date = $_GET['date'];
                     <th>Booking Id</th>
                     <th>Booking Date</th>
                     <th>Booking Slot</th>
+                    <th></th>
                 </tr>
 
             </thead>
