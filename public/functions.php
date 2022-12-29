@@ -77,7 +77,7 @@ function showBookingDatesInAdmin(){
     $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
     // create SQL statement
-    $sql = "SELECT * FROM booking";
+    $sql = "SELECT DISTINCT booking_date FROM booking";
     
     // Query database
     $result = mysqli_query($connection, $sql);

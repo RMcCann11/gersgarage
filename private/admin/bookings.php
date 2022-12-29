@@ -2,7 +2,7 @@
 
 <div class="row">
 
-    <h2 class="page-header">This area can be used to filter bookings</h2>
+    <h2 class="page-header">This area can be used to filter bookings by date.</h2>
 
 </div>
 
@@ -20,8 +20,6 @@
         
         <?php showBookingDatesInAdmin();?>
 
-            
-
     </select>
     </div>
 
@@ -32,5 +30,7 @@
 </div>
 
 </form>
+
+<p style="color:red;text-align:center;">Please note that if a date doesn't appear in the dropdown menu, no bookings exist for this date.</p>
 
           
