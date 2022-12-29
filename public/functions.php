@@ -365,3 +365,41 @@ DELIMITER;
 
 }
 
+//Used to retrieve the details of all bookings as per a date range
+function getBookingsByDateRange($startDate, $endDate){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM booking WHERE booking_date BETWEEN '$startDate' AND '$endDate'";
+    
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+    while($row = mysqli_fetch_assoc($result)){
+
+$bookings = <<<DELIMITER
+
+<tr>
+ <td>{$row["booking_id"]}</td>
+ <td>{$row["booking_date"]}</td>
+ <td>{$row["booking_slot"]}</td>
+ <td><a href=view_booking_detail.php?bookingId={$row["booking_id"]}>Please click here for further information regarding this booking</a></td>
+</tr>
+
+DELIMITER;
+ 
+     echo $bookings;        
+
+ }  
+
+}
+
+

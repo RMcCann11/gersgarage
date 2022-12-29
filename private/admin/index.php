@@ -8,7 +8,7 @@
 
                 <?php
 
-                if ($_SERVER['REQUEST_URI'] == '/gersgarage/private/admin/index.php'){
+                if ($_SERVER['REQUEST_URI'] == '/gersgarage/private/admin/index.php' || $_SERVER["REQUEST_URI"] == '/gersgarage/private/admin/'){
 
                     include 'admin_index_content.php';
 
