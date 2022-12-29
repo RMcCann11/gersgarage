@@ -340,7 +340,7 @@ function getBooking($bookingId){
         $productName = showProductInUserBookings($row["product_id"]);
         $bookingStatusName = showBookingStatusInUserBookings($row["booking_status_id"]); 
 
-$bookings = <<<DELIMITER
+$booking = <<<DELIMITER
         
     <tr>
         <td>{$row["booking_id"]}</td>
@@ -359,7 +359,7 @@ $bookings = <<<DELIMITER
 
 DELIMITER;
 
-        echo $bookings;
+        echo $booking;
 
     }
 
