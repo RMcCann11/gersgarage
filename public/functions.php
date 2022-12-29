@@ -277,6 +277,7 @@ function showBookingStatusInUserBookings($bookingStatusId){
 
 }
 
+//Used to retrieve the details of all bookings as per a particular date
 function getBookingsByDate($date){
 
        // Credentials
@@ -310,6 +311,57 @@ DELIMITER;
         echo $bookings;        
    
     }  
+
+}
+
+//Used to retrieve the details of a paricular booking
+function getBooking($bookingId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM booking_detail WHERE booking_id = $bookingId";
+    
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+    while($row = mysqli_fetch_assoc($result)){
+
+        $bookingDate = showBookingDateInUserBookings($row["booking_id"]); 
+        $bookingSlot =  showBookingSlotInUserBookings($row["booking_id"]);
+        $vehicleMake = showVehicleMakeInUserBookings($row["vehicle_id"]);
+        $productName = showProductInUserBookings($row["product_id"]);
+        $bookingStatusName = showBookingStatusInUserBookings($row["booking_status_id"]); 
+
+$bookings = <<<DELIMITER
+        
+    <tr>
+        <td>{$row["booking_id"]}</td>
+        <td>{$bookingDate}</td>
+        <td>{$bookingSlot}</td>
+        <td>{$vehicleMake}</td>
+        <td>{$productName}</td>
+        <td>{$row["license_number"]}</td>
+        <td>{$row["engine_type"]}</td>
+        <td>{$row["cust_name"]}</td>
+        <td>{$row["cust_contact"]}</td>
+        <td>{$row["cust_comment"]}</td>
+        <td>{$bookingStatusName}</td>
+            
+    </tr>
+
+DELIMITER;
+
+        echo $bookings;
+
+    }
 
 }
 
