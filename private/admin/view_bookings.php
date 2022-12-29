@@ -8,18 +8,9 @@
 
                 <?php
 
-                if ($_SERVER['REQUEST_URI'] == '/gersgarage/private/admin/index.php'){
+                $date = $_GET['date'];
 
-                    include 'admin_index_content.php';
-
-                }
-
-                if(isset($_GET["bookings"])){
-
-                    include 'bookings.php';
-
-                }
-
+                echo $date;
 
                 ?>
 
