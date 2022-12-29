@@ -94,7 +94,7 @@ $userName = $row['user_name'];
     </thead>
     <tbody>
 
-    <?php getBookingsByUser($userId)?>
+    <?php getBookingsByUser($userId);?>
 
   </tbody>
 </table>

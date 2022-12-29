@@ -1,24 +1,42 @@
 <?php include '../session.php'; ?>
+<?php include '../db_connection.php'; ?>
+<?php include '../../public/functions.php'; ?>
 <?php include 'header.php';?>
 
-        <div id="page-wrapper">
+<?php
 
-            <div class="container-fluid">
+$date = $_GET['date'];
 
-                <?php
+?>
 
-                $date = $_GET['date'];
+<div id="page-wrapper">
 
-                echo $date;
+    <div class="container-fluid">
 
-                ?>
+        <table class="table table-hover">
 
-            </div>
-            <!-- /.container-fluid -->
+            <thead>
 
-        </div>
-        <!-- /#page-wrapper -->
+                <tr>
+                    <th>Booking Id</th>
+                    <th>Booking Date</th>
+                    <th>Booking Slot</th>
+                </tr>
 
-<?php include 'footer.php';?>      
+            </thead>
+            <tbody>
+
+            <?php getBookingsByDate($date);?>
+
+            </tbody>
+        </table>
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+
+<?php include 'footer.php';?>     
 
     
