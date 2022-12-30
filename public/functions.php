@@ -378,12 +378,14 @@ function getBookingsByDateRange($startDate, $endDate){
     $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
     // create SQL statement
-    $sql = "SELECT * FROM booking WHERE booking_date BETWEEN '$startDate' AND '$endDate'";
+    $sql = "SELECT * FROM booking WHERE booking_date BETWEEN '$startDate' AND '$endDate' ORDER BY booking_date";
     
     // Query database
     $result = mysqli_query($connection, $sql);
 
     while($row = mysqli_fetch_assoc($result)){
+
+        $mechanicName = showMechanicNameInAdminBookings($row["mechanic_id"]); 
 
 $bookings = <<<DELIMITER
 
@@ -391,6 +393,7 @@ $bookings = <<<DELIMITER
  <td>{$row["booking_id"]}</td>
  <td>{$row["booking_date"]}</td>
  <td>{$row["booking_slot"]}</td>
+ <td>{$mechanicName}</td>
  <td><a href=view_booking_detail.php?bookingId={$row["booking_id"]}>Please click here for further information regarding this booking</a></td>
 </tr>
 
@@ -399,6 +402,32 @@ DELIMITER;
      echo $bookings;        
 
  }  
+
+}
+
+//Used to relate booking to mechanic to retrieve a mechanic's name in list bookings in admin
+function showMechanicNameInAdminBookings($mechanicId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM mechanic WHERE mechanic_id = $mechanicId";
+
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+    while($row = mysqli_fetch_assoc($result)){
+
+        return $row["full_name"];
+
+    }
 
 }
 

@@ -22,6 +22,7 @@ $endDate = $_GET['end_date'];
                     <th>Booking Id</th>
                     <th>Booking Date</th>
                     <th>Booking Slot</th>
+                    <th>Assigned Mechanic</th>
                     <th></th>
                 </tr>
 
