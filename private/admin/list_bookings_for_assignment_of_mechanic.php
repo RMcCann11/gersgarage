@@ -27,7 +27,7 @@ $date = $_GET['date'];
             </thead>
             <tbody>
 
-            <?php getBookingsByDateScheduleViewer($date);?>
+            <?php getBookingsByDateMechanicAssignment($date);?>
 
             </tbody>
         </table>

@@ -20,6 +20,12 @@
 
                 }
 
+                if(isset($_GET["bookings_for_assignment_of_mechanic"])){
+
+                    include 'bookings_for_assignment_of_mechanic.php';
+
+                }
+
 
                 ?>
 

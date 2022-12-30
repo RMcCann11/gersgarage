@@ -278,7 +278,7 @@ function showBookingStatusInUserBookings($bookingStatusId){
 }
 
 //Used to retrieve the details of all bookings as per a particular date
-function getBookingsByDate($date){
+function getBookingsByDateScheduleViewer($date){
 
        // Credentials
        $dbhost = 'localhost:3307';
@@ -392,6 +392,43 @@ $bookings = <<<DELIMITER
  <td>{$row["booking_date"]}</td>
  <td>{$row["booking_slot"]}</td>
  <td><a href=view_booking_detail.php?bookingId={$row["booking_id"]}>Please click here for further information regarding this booking</a></td>
+</tr>
+
+DELIMITER;
+ 
+     echo $bookings;        
+
+ }  
+
+}
+
+//Used to retrieve the details of all bookings as per a particular date
+function getBookingsByDateMechanicAssignment($date){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM booking WHERE booking_date = '$date'";
+    
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+    while($row = mysqli_fetch_assoc($result)){
+
+$bookings = <<<DELIMITER
+
+<tr>
+ <td>{$row["booking_id"]}</td>
+ <td>{$row["booking_date"]}</td>
+ <td>{$row["booking_slot"]}</td>
+ <td><a href=assign_mechanic.php?bookingId={$row["booking_id"]}&bookingDate={$row["booking_date"]}>Please click here for further information regarding this booking and to assign a mechanic to it</a></td>
 </tr>
 
 DELIMITER;

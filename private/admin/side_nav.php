@@ -8,7 +8,7 @@
                         <a href="index.php?bookings"><i class="fa fa-fw fa-bar-chart-o"></i> View Schedule</a>
                     </li>
                     <li>
-                        <a href="add_product.html"><i class="fa fa-fw fa-table"></i> Add Product</a>
+                        <a href="index.php?bookings_for_assignment_of_mechanic"><i class="fa fa-fw fa-table"></i> Assign a Mechanic To a Booking</a>
                     </li>
                     
                     <li>
