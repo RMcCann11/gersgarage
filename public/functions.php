@@ -471,4 +471,30 @@ DELIMITER;
 
 }
 
+function setMessage($msg){
+
+    if(!empty($msg)) {
+
+        $_SESSION["message"] = $msg;
+
+    } else {
+
+        $msg = "";
+
+    }
+
+}
+
+function displayMessage(){
+
+    if(isset($_SESSION["message"])){
+
+        echo $_SESSION["message"];
+        unset($_SESSION["message"]);
+
+    }
+
+}
+
+
 

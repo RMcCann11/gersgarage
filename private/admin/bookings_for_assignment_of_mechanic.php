@@ -2,6 +2,7 @@
 
 <div class="row">
 
+    <h2 class = "bg-success text-center"><?php displayMessage(); ?></h2>
     <h2 class="page-header">This area can be used to assign a mechanic to a booking.</h2>
     <h3 style="color:green;text-align:left;">In order to assign a mechanic to a booking, please select a date in the below dropdown menu to view bookings for that date.</h3>
 

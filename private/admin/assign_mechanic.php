@@ -7,6 +7,22 @@
 
 $bookingId = $_GET['bookingId'];
 
+if(isset($_POST["submit_mechanic"])){
+
+    $mechanicId = $_POST["mechanic_id"];
+
+    // create SQL statement
+    $sql = "UPDATE booking SET mechanic_id = $mechanicId WHERE booking_id = $bookingId";
+
+    // Query database
+    $result = mysqli_query($connection, $sql);
+    
+    setMessage("The mechanic with id {$mechanicId} has been assigned to the booking with id {$bookingId}");
+
+    header("location:index.php?bookings_for_assignment_of_mechanic");
+   
+}
+
 ?>
 
 <div id="page-wrapper">
@@ -50,6 +66,12 @@ $bookingId = $_GET['bookingId'];
             <?php showMechanicDetails();?>
 
       </select>
+
+      <br>
+
+      <div class="form-group">
+        <input type="submit" name="submit_mechanic" class="btn btn-primary btn-lg" value="Submit Mechanic">
+      </div>
 
     </form>
 
