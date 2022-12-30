@@ -42,6 +42,17 @@ $bookingId = $_GET['bookingId'];
     </div>
     <!-- /.container-fluid -->
 
+    <form action="" method="post">
+
+        <select name="mechanic_id" id="mechanic_id" class="form-control">
+            <option value="">Please select a mechanic</option>
+
+            <?php showMechanicDetails();?>
+
+      </select>
+
+    </form>
+
 </div>
 <!-- /#page-wrapper -->
 

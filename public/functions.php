@@ -439,4 +439,36 @@ DELIMITER;
 
 }
 
+//Used to dynamically pull mechanic details from database
+function showMechanicDetails(){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+   // create SQL statement
+   $sql = "SELECT * FROM mechanic";
+   
+   // Query database
+   $result = mysqli_query($connection, $sql);
+
+   while($row = mysqli_fetch_assoc($result)){
+
+$vehicleOptions = <<<DELIMITER
+
+<option value="{$row["mechanic_id"]}">{$row["full_name"]}</option>    
+
+DELIMITER;
+
+   echo $vehicleOptions;
+
+   }
+
+}
+
 
