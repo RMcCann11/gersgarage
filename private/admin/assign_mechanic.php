@@ -61,7 +61,7 @@ if(isset($_POST["submit_mechanic"])){
     <form action="" method="post">
 
         <select name="mechanic_id" id="mechanic_id" class="form-control">
-            <option value="">Please select a mechanic</option>
+            <option value="">Please select a mechanic for this booking</option>
 
             <?php showMechanicDetails();?>
 
