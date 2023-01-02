@@ -24,7 +24,7 @@ if(isset($_POST["submit_mechanic"])){
 
     if($count >= 4){
 
-        setMessage("The mechanic with id {$mechanicId} has already been assigned to four or more bookings on {$bookingDate}. Please select another mechanic.");
+        setMessage("The mechanic with id {$mechanicId} has already been assigned to four bookings on {$bookingDate}. Please select another mechanic.");
 
         header("location:index.php?bookings_for_assignment_of_mechanic");
 
