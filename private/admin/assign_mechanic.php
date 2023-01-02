@@ -6,21 +6,44 @@
 <?php
 
 $bookingId = $_GET['bookingId'];
+$bookingDate = $_GET['bookingDate'];
 
 if(isset($_POST["submit_mechanic"])){
 
     $mechanicId = $_POST["mechanic_id"];
 
     // create SQL statement
-    $sql = "UPDATE booking SET mechanic_id = $mechanicId WHERE booking_id = $bookingId";
+    $sql = "SELECT mechanic_id, booking_date FROM booking WHERE mechanic_id = $mechanicId AND booking_date = '$bookingDate'";
 
     // Query database
     $result = mysqli_query($connection, $sql);
-    
-    setMessage("The mechanic with id {$mechanicId} has been assigned to the booking with id {$bookingId}");
+    $row = mysqli_fetch_assoc($result);
 
-    header("location:index.php?bookings_for_assignment_of_mechanic");
+    // count the number of records found
+    $count = mysqli_num_rows($result);
+
+    if($count >= 4){
+
+        setMessage("The mechanic with id {$mechanicId} has already been assigned to four or more bookings on {$bookingDate}. Please select another mechanic.");
+
+        header("location:index.php?bookings_for_assignment_of_mechanic");
+
+    } else {
+
+        // create SQL statement
+        $sql = "UPDATE booking SET mechanic_id = $mechanicId WHERE booking_id = $bookingId";
+
+        // Query database
+        $result = mysqli_query($connection, $sql);
+        
+        setMessage("The mechanic with id {$mechanicId} has been assigned to the booking with id {$bookingId}");
+
+        header("location:index.php?bookings_for_assignment_of_mechanic");
    
+
+    }
+
+    
 }
 
 ?>
