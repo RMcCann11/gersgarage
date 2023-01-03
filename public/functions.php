@@ -297,18 +297,39 @@ function getBookingsByDateScheduleViewer($date){
    
        while($row = mysqli_fetch_assoc($result)){
 
+            if($row["mechanic_id"] != NULL){
+
+                $mechanicName = showMechanicNameInAdminBookings($row["mechanic_id"]);
+
 $bookings = <<<DELIMITER
 
 <tr>
     <td>{$row["booking_id"]}</td>
     <td>{$row["booking_date"]}</td>
     <td>{$row["booking_slot"]}</td>
+    <td>{$mechanicName}</td>
     <td><a href=view_booking_detail.php?bookingId={$row["booking_id"]}>Please click here for further information regarding this booking</a></td>
 </tr>
 
 DELIMITER;
     
-        echo $bookings;        
+        echo $bookings; 
+
+            } else {
+
+$bookings = <<<DELIMITER
+<tr>
+    <td>{$row["booking_id"]}</td>
+    <td>{$row["booking_date"]}</td>
+    <td>{$row["booking_slot"]}</td>
+    <td>No Mechanic Assigned</td>
+    <td><a href=view_booking_detail.php?bookingId={$row["booking_id"]}>Please click here for further information regarding this booking</a></td>
+</tr>
+DELIMITER;
+
+echo $bookings; 
+
+            }     
    
     }  
 
