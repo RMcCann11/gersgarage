@@ -26,6 +26,12 @@
 
                 }
 
+                if(isset($_GET["bookings_for_assignment_of_parts"])){
+
+                    include 'bookings_for_assignment_of_parts.php';
+
+                }
+
 
                 ?>
 

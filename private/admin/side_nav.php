@@ -12,7 +12,7 @@
                     </li>
                     
                     <li>
-                        <a href="categories.html"><i class="fa fa-fw fa-desktop"></i> Categories</a>
+                        <a href="index.php?bookings_for_assignment_of_parts"><i class="fa fa-fw fa-desktop"></i> Assign Parts To a Booking</a>
                     </li>
                     <li>
                         <a href="users.html"><i class="fa fa-fw fa-wrench"></i> Users</a>
