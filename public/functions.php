@@ -522,7 +522,7 @@ function getBookingsByDatePartAssignment($date){
     $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
     // create SQL statement
-    $sql = "SELECT * FROM booking WHERE booking_date = '$date'";
+    $sql = "SELECT * FROM booking WHERE booking_date = '$date' AND parts_assigned = 'N'";
     
     // Query database
     $result = mysqli_query($connection, $sql);
