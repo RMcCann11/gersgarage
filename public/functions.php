@@ -535,7 +535,7 @@ $bookings = <<<DELIMITER
  <td>{$row["booking_id"]}</td>
  <td>{$row["booking_date"]}</td>
  <td>{$row["booking_slot"]}</td>
- <td><a href=assign_parts.php?bookingId={$row["booking_id"]}>Please click here to assign a parts to this booking</a></td>
+ <td><a href=assign_parts.php?bookingId={$row["booking_id"]}>Please click here to assign parts to this booking</a></td>
 </tr>
 
 DELIMITER;
@@ -543,6 +543,43 @@ DELIMITER;
      echo $bookings;        
 
  }  
+
+}
+
+//Used to retrieve the details of all bookings as per a particular date
+function getPartDetails($bookingId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM part";
+    
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+    while($row = mysqli_fetch_assoc($result)){
+
+$parts = <<<DELIMITER
+
+<tr>
+ <td>{$row["name"]}</td>
+ <td>{$row["price"]}</td>
+ <td><a href=part_addition_confirmation.php?partId={$row["part_id"]}&bookingId={$bookingId}>Click Here To Add This Part To A Shopping Cart</a></td>
+</tr>
+
+DELIMITER;
+ 
+     echo $parts;        
+
+ }  
+
 
 }
 
