@@ -583,6 +583,26 @@ DELIMITER;
 
 }
 
+//Used to update parts assigned in checkout.php to Y
+function changePartsAssigned($bookingId) {
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+    
+    // create SQL statement
+    $sql = "UPDATE booking SET parts_assigned = 'Y' WHERE booking_id = $bookingId";
+
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+}
+
 //Used to dynamically pull mechanic details from database
 function showMechanicDetails(){
 
