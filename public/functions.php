@@ -546,7 +546,7 @@ DELIMITER;
 
 }
 
-//Used to retrieve the details of all bookings as per a particular date
+//Used to retrieve the details of all parts
 function getPartDetails($bookingId){
 
     // Credentials
@@ -579,7 +579,6 @@ DELIMITER;
      echo $parts;        
 
  }  
-
 
 }
 
