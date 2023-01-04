@@ -46,7 +46,7 @@ if ( mysqli_num_rows( $r ) == 1 )
 
 <hr>
 
-<p><a href="assign_parts.php?bookingId=<?php echo $bookingId;?>">Click Here To Continue Adding Parts To Your Cart |</a> <a href="cart.php"> Click Here To View Your Cart</a></p>
+<p><a href="assign_parts.php?bookingId=<?php echo $bookingId;?>">Click Here To Continue Adding Parts To Your Cart |</a> <a href="cart.php?bookingId=<?php echo $bookingId;?>"> Click Here To View Your Cart</a></p>
 
 
 

@@ -559,7 +559,7 @@ function getPartDetails($bookingId){
     $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
     // create SQL statement
-    $sql = "SELECT * FROM part";
+    $sql = "SELECT * FROM part ORDER BY name";
     
     // Query database
     $result = mysqli_query($connection, $sql);
