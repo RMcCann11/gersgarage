@@ -659,7 +659,7 @@ function getPartName($partId){
     $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
     // create SQL statement
-    $sql = "SELECT * FROM part";
+    $sql = "SELECT * FROM part WHERE part_id = $partId";
     
     // Query database
     $result = mysqli_query($connection, $sql);
