@@ -251,6 +251,32 @@ function showProductInUserBookings($productId){
 
 }
 
+//Used to relate booking_detail to product to retrieve product price in invoice generation
+function showProductPriceInvoiceGeneration($productId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM product WHERE product_id = $productId";
+
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+    while($row = mysqli_fetch_assoc($result)){
+
+        return $row["price"];
+
+    }
+
+}
+
 //Used to relate booking_detail to booking_status to retrieve booking status in user's account
 function showBookingStatusInUserBookings($bookingStatusId){
 
@@ -584,7 +610,7 @@ DELIMITER;
 
 }
 
-//Used to retrieve the details of all parts
+//Used to retrieve the details of all parts for assigning parts to a booking
 function getPartDetails($bookingId){
 
     // Credentials
@@ -617,6 +643,32 @@ DELIMITER;
      echo $parts;        
 
  }  
+
+}
+
+//Used to retrieve the name of a part for generating a receipt
+function getPartName($partId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM part";
+    
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+    while($row = mysqli_fetch_assoc($result)){
+
+       return $row["name"];
+
+    }  
 
 }
 
@@ -667,6 +719,291 @@ $vehicleOptions = <<<DELIMITER
 DELIMITER;
 
    echo $vehicleOptions;
+
+   }
+
+}
+
+// Used to retrieve booking details for the generation of an invoice
+function getBookingDetailsForInvoice($bookingId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM booking_detail WHERE booking_id = $bookingId";
+
+    // Query database
+   $result = mysqli_query($connection, $sql);
+
+   while($row = mysqli_fetch_assoc($result)){
+
+    $vehicleMake = showVehicleMakeInUserBookings($row["vehicle_id"]);
+
+$invoiceDetails = <<<DELIMITER
+
+    <tr>
+    <td>Customer Name:</td>
+    <td>{$row["cust_name"]}</td>
+    </tr>
+    <tr>
+    <td>Contact Number:</td>
+    <td>{$row["cust_contact"]}</td>
+    </tr>
+    <td>Vehicle:</td>
+    <td>{$vehicleMake}</td>
+    </tr>
+    <td>License Number:</td>
+    <td>{$row["license_number"]}</td>
+    </tr>
+
+DELIMITER;
+
+    echo $invoiceDetails;
+
+   }
+
+}
+
+//Used to generate an invoice for a booking without parts
+function getProductPriceForInvoiceWithoutParts($bookingId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM booking_detail WHERE booking_id = $bookingId";
+
+    // Query database
+   $result = mysqli_query($connection, $sql);
+
+   while($row = mysqli_fetch_assoc($result)){
+
+    $productName = showProductInUserBookings($row["product_id"]);
+    $productPrice = showProductPriceInvoiceGeneration($row["product_id"]);
+
+$invoiceDetails = <<<DELIMITER
+
+    <tr>
+    <td>Chosen Service:</td>
+    <td>{$productName}</td>
+    </tr>
+    <tr>
+    <td>Price of Chosen Service:</td>
+    <td>&#8364;{$productPrice}</td>
+    </tr>
+    <tr>
+    <td><b>Total Amount Due:</b></td>
+    <td><b>&#8364;{$productPrice}</b></td>
+    </tr>
+    
+
+DELIMITER;
+
+    echo $invoiceDetails;
+
+   }
+
+}
+
+//Used to generate an invoice for a booking with parts
+function getProductPriceForInvoiceWithParts($bookingId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM booking_detail WHERE booking_id = $bookingId";
+
+    // Query database
+   $result = mysqli_query($connection, $sql);
+
+   while($row = mysqli_fetch_assoc($result)){
+
+    $productName = showProductInUserBookings($row["product_id"]);
+    $productPrice = showProductPriceInvoiceGeneration($row["product_id"]);
+
+$invoiceDetails = <<<DELIMITER
+
+    <tr>
+    <td>Chosen Service:</td>
+    <td>{$productName}</td>
+    </tr>
+    <tr>
+    <td><b>Price of Chosen Service:</b></td>
+    <td><b>&#8364;{$productPrice}</b></td>
+    </tr>
+
+DELIMITER;
+
+    echo $invoiceDetails;
+
+   }
+
+}
+
+//Used to generate an invoice for a booking with parts
+function getAdditionalInfoForInvoiceWithParts($orderId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM order_contents WHERE orders_id = $orderId";
+
+    // Query database
+   $result = mysqli_query($connection, $sql);
+
+   while($row = mysqli_fetch_assoc($result)){
+
+    $partName = getPartName($row["part_id"]);
+    $partTotal = $row["quantity"] * $row["price"];
+
+$invoiceDetails = <<<DELIMITER
+
+    <tr>
+    <td>Name of Part Required:</td>
+    <td>{$partName}</td>
+    </tr>
+    <tr>
+    <td>Quantity of Part Required:</td>
+    <td>{$row["quantity"]}</b></td>
+    </tr>
+    <tr>
+    <td>Price of Part Required:</td>
+    <td>&#8364;{$row["price"]}</b></td>
+    </tr>
+    <tr>
+    <td><b>Total Price of Part Required:</b></td>
+    <td><b>&#8364;{$partTotal}</b></td>
+    </tr>
+
+DELIMITER;
+
+    echo $invoiceDetails;
+
+   }
+
+}
+
+function getOrderTotalForInvoiceWithParts($fixedCost, $variableCost){
+
+    $totalCost = $fixedCost + $variableCost;
+
+$invoiceDetails = <<<DELIMITER
+
+    <tr>
+    <td style="color:red"><b>TOTAL AMOUNT DUE:</b></td>
+    <td style="color:red"><b>&#8364;{$totalCost}</b></td>
+    </tr>
+
+DELIMITER;
+
+    echo $invoiceDetails;
+
+
+}
+
+//Used to to get the fixed cost of a booking with parts 
+function getProductPriceAsFixedPrice($bookingId) {
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM booking_detail WHERE booking_id = $bookingId";
+
+    // Query database
+   $result = mysqli_query($connection, $sql);
+
+   while($row = mysqli_fetch_assoc($result)){
+
+    $productPrice = showProductPriceInvoiceGeneration($row["product_id"]);
+    return $productPrice;
+
+   }
+
+}
+
+//Used to to get the total variable cost of a booking with parts 
+function getOrderTotal($bookingId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM orders WHERE booking_id = $bookingId";
+
+     // Query database
+   $result = mysqli_query($connection, $sql);
+
+   while($row = mysqli_fetch_assoc($result)){
+
+    $orderPrice = $row["total"];
+    return $orderPrice;
+
+   }
+
+}
+
+//Used to to get the id of an order 
+function getOrderId($bookingId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM orders WHERE booking_id = $bookingId";
+
+     // Query database
+   $result = mysqli_query($connection, $sql);
+
+   while($row = mysqli_fetch_assoc($result)){
+
+    $orderId = $row["id"];
+    return $orderId;
 
    }
 
