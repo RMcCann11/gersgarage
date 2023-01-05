@@ -35,7 +35,7 @@
 
 </form>
 
-<p style="color:red;text-align:center;">Please note that if a date doesn't appear in any of the dropdown menus, no bookings exist for this date.</p>
+<p style="color:red;text-align:center;">Please note that if a date doesn't appear in the dropdown menu, no bookings exist for this date.</p>
 
 
 
