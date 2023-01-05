@@ -724,6 +724,38 @@ DELIMITER;
 
 }
 
+//Used to dynamically pull mechanic booking statuses from database
+function showBookingStatuses(){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+   // create SQL statement
+   $sql = "SELECT * FROM booking_status";
+   
+   // Query database
+   $result = mysqli_query($connection, $sql);
+
+   while($row = mysqli_fetch_assoc($result)){
+
+$bookingStatusOptions = <<<DELIMITER
+
+<option value="{$row["booking_status_id"]}">{$row["name"]}</option>    
+
+DELIMITER;
+
+   echo $bookingStatusOptions;
+
+   }
+
+}
+
 // Used to retrieve booking details for the generation of an invoice
 function getBookingDetailsForInvoice($bookingId){
 
