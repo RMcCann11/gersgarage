@@ -27,7 +27,7 @@ $date = $_GET['date'];
             </thead>
             <tbody>
 
-            <?php getBookingsByDatePartAssignment($date);?>
+            <?php getBookingsByDatePrintInvoice($date);?>
 
             </tbody>
         </table>
