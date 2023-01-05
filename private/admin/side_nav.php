@@ -18,7 +18,7 @@
                         <a href="index.php?bookings_for_printing_of_invoice"><i class="fa fa-fw fa-desktop"></i> Print an Invoice</a>
                     </li>
                     <li>
-                        <a href="users.html"><i class="fa fa-fw fa-wrench"></i> Users</a>
+                        <a href="index.php?bookings_for_changing_of_booking_status"><i class="fa fa-fw fa-wrench"></i> Change The Status Of a Booking</a>
                     </li>
                 
                 </ul>

@@ -38,6 +38,12 @@
 
                 }
 
+                if(isset($_GET["bookings_for_changing_of_booking_status"])){
+
+                    include 'bookings_for_changing_of_booking_status.php';
+
+                }
+
 
                 ?>
 
