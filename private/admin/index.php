@@ -32,6 +32,12 @@
 
                 }
 
+                if(isset($_GET["bookings_for_printing_of_invoice"])){
+
+                    include 'bookings_for_printing_of_invoice.php';
+
+                }
+
 
                 ?>
 

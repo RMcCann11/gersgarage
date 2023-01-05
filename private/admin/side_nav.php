@@ -15,6 +15,9 @@
                         <a href="index.php?bookings_for_assignment_of_parts"><i class="fa fa-fw fa-desktop"></i> Assign Parts To a Booking</a>
                     </li>
                     <li>
+                        <a href="index.php?bookings_for_printing_of_invoice"><i class="fa fa-fw fa-desktop"></i> Print an Invoice</a>
+                    </li>
+                    <li>
                         <a href="users.html"><i class="fa fa-fw fa-wrench"></i> Users</a>
                     </li>
                 
