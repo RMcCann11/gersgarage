@@ -257,6 +257,60 @@ function showVehicleMakeInUserBookings($vehicleId){
 
 }
 
+//Used to retrieve vehicle_type_id for schedule viewer
+function getVehicleTypeId($vehicleId){
+
+      // Credentials
+      $dbhost = 'localhost:3307';
+      $dbuser = 'root';
+      $dbpass = 'root';
+      $dbname = 'gersgarage';
+  
+      // Create a database connection
+      $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+  
+      // create SQL statement
+      $sql = "SELECT * FROM vehicle WHERE vehicle_id = $vehicleId";
+  
+      // Query database
+      $result = mysqli_query($connection, $sql);
+  
+      while($row = mysqli_fetch_assoc($result)){
+  
+        $vehicleTypeId = $row["vehicle_type_id"];
+        return showVehicleTypeInUserBookings($vehicleTypeId);
+  
+      }
+
+}
+
+function showVehicleTypeInUserBookings($vehicleTypeId){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    // create SQL statement
+    $sql = "SELECT * FROM vehicle_type WHERE vehicle_type_id = $vehicleTypeId";
+
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+    while($row = mysqli_fetch_assoc($result)){
+  
+        return $row["name"];
+  
+      }
+
+
+    
+}
+
 //Used to relate booking_detail to product to retrieve product in user's account
 function showProductInUserBookings($productId){
 
@@ -415,6 +469,7 @@ function getBooking($bookingId){
 
         $bookingDate = showBookingDateInUserBookings($row["booking_id"]); 
         $bookingSlot =  showBookingSlotInUserBookings($row["booking_id"]);
+        $vehicleType =  getVehicleTypeId($row["vehicle_id"]);
         $vehicleMake = showVehicleMakeInUserBookings($row["vehicle_id"]);
         $productName = showProductInUserBookings($row["product_id"]);
         $bookingStatusName = showBookingStatusInUserBookings($row["booking_status_id"]); 
@@ -425,6 +480,7 @@ $booking = <<<DELIMITER
         <td>{$row["booking_id"]}</td>
         <td>{$bookingDate}</td>
         <td>{$bookingSlot}</td>
+        <td>{$vehicleType}</td>
         <td>{$vehicleMake}</td>
         <td>{$productName}</td>
         <td>{$row["license_number"]}</td>

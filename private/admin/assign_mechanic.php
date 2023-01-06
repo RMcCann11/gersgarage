@@ -60,7 +60,8 @@ if(isset($_POST["submit_mechanic"])){
                 <th>Booking Id</th>
                 <th>Booking Date</th>
                 <th>Booking Slot</th>
-                <th>Vehicle</th>
+                <th>Vehicle Type</th>
+                <th>Vehicle Model</th>
                 <th>Product</th>
                 <th>License Number</th>
                 <th>Engine Type</th>
