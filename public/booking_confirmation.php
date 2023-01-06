@@ -77,7 +77,7 @@ $bookingSlot = $row['booking_slot'];
               <a class="nav-link" href="review.php">Customer Reviews<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./user_account.php?userId=<?php echo $userId;?>.php">My Account<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="./user_account.php?userId=<?php echo $userId;?>">My Account<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="logout.php">Logout<span class="sr-only">(current)</span></a>

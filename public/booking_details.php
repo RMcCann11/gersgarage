@@ -9,33 +9,85 @@ $userId = $_GET["userId"];
 
 if(isset($_POST["submit_details"])){
 
-  $vehicleId = $_POST["vehicle_id"];
-  $licenseDetails = $_POST["license_number"];
-  $engineType = $_POST["engine_type"];
-  $bookingStatusId = 1;
-  $productId = $_POST["product_id"];
-  $custName = $_POST["cust_name"];
-  $custContact = $_POST["cust_contact"];
-  $custComment = $_POST["cust_comment"];
+  if(empty($_POST["user_type"]) && empty($_POST["user_make"])){
+
+    $vehicleId = $_POST["vehicle_id"];
+    $licenseDetails = $_POST["license_number"];
+    $engineType = $_POST["engine_type"];
+    $bookingStatusId = 1;
+    $productId = $_POST["product_id"];
+    $custName = $_POST["cust_name"];
+    $custContact = $_POST["cust_contact"];
+    $custComment = $_POST["cust_comment"];
+    
+    // create SQL statement
+    $sql = "INSERT INTO booking_detail(booking_id, user_id, vehicle_id, license_number, engine_type, booking_status_id, product_id, cust_name, cust_contact, cust_comment) VALUES('{$bookingId}', '{$userId}', '{$vehicleId}', '{$licenseDetails}', '{$engineType}', '{$bookingStatusId}', '{$productId}', '{$custName}', '{$custContact}', '{$custComment}')";
+    
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+    // Retrieve latest entry in booking_detail
+    $sql = "SELECT * FROM booking_detail ORDER BY booking_detail_id DESC LIMIT 0,1";
+
+    // Query database
+    $result = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    // Redirect user to confirmation page for latest booking
+    $bookingDetailsId = $row['booking_detail_id'];
+
+    header("location:booking_confirmation.php?bookingDetailsId=$bookingDetailsId")
+    ;
+    
+  } else {
+
+    $userTypeId = $_POST["user_type"];
+    $vehicleMake = $_POST["user_make"];
+    
+    // create SQL statement
+    $sql = "INSERT INTO vehicle (vehicle_type_id, name) VALUES({$userTypeId}, '{$vehicleMake}')";
+    
+    // Query database
+    $result = mysqli_query($connection, $sql);
   
-  // create SQL statement
-  $sql = "INSERT INTO booking_detail(booking_id, user_id, vehicle_id, license_number, engine_type, booking_status_id, product_id, cust_name, cust_contact, cust_comment) VALUES('{$bookingId}', '{$userId}', '{$vehicleId}', '{$licenseDetails}', '{$engineType}', '{$bookingStatusId}', '{$productId}', '{$custName}', '{$custContact}', '{$custComment}')";
+    // Retrieve latest entry in booking_detail
+    $sql = "SELECT * FROM vehicle ORDER BY vehicle_id DESC LIMIT 0,1";
   
-  // Query database
-  $result = mysqli_query($connection, $sql);
-
-  // Retrieve latest entry in booking_detail
-  $sql = "SELECT * FROM booking_detail ORDER BY booking_detail_id DESC LIMIT 0,1";
-
-  // Query database
-  $result = mysqli_query($connection, $sql);
-  $row = mysqli_fetch_assoc($result);
-
-  // Redirect user to confirmation page for latest booking
-  $bookingDetailsId = $row['booking_detail_id'];
-
-  header("location:booking_confirmation.php?bookingDetailsId=$bookingDetailsId");
+    // Query database
+    $result = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($result);
   
+    $vehicleId = $row['vehicle_id'];
+
+    $licenseDetails = $_POST["license_number"];
+    $engineType = $_POST["engine_type"];
+    $bookingStatusId = 1;
+    $productId = $_POST["product_id"];
+    $custName = $_POST["cust_name"];
+    $custContact = $_POST["cust_contact"];
+    $custComment = $_POST["cust_comment"];
+    
+    // create SQL statement
+    $sql = "INSERT INTO booking_detail(booking_id, user_id, vehicle_id, license_number, engine_type, booking_status_id, product_id, cust_name, cust_contact, cust_comment) VALUES('{$bookingId}', '{$userId}', '{$vehicleId}', '{$licenseDetails}', '{$engineType}', '{$bookingStatusId}', '{$productId}', '{$custName}', '{$custContact}', '{$custComment}')";
+    
+    // Query database
+    $result = mysqli_query($connection, $sql);
+
+    // Retrieve latest entry in booking_detail
+    $sql = "SELECT * FROM booking_detail ORDER BY booking_detail_id DESC LIMIT 0,1";
+
+    // Query database
+    $result = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    // Redirect user to confirmation page for latest booking
+    $bookingDetailsId = $row['booking_detail_id'];
+  
+    header("location:booking_confirmation.php?bookingDetailsId=$bookingDetailsId")
+    ;
+  
+  }
+
 }
   
 ?> 
@@ -77,12 +129,25 @@ The following lines of code (lines 61 to 70 have) have been sourced from https:/
 
       <label for="vehicle_id">Vehicle Make:</label>
       <select name="vehicle_id" id="vehicle_id" class="form-control">
-            <option value="">Select Vehicle</option>
+            <option value="">Please Select A Vehicle</option>
 
             <?php showVehiclesBookingDetails();?>
+            <option>Other</option>  
 
       </select>
       <br>
+        <label for="user_type">If you have chosen other, please select a vehicle type:</label>
+        <select name="user_type" id="user_type" class="form-control">
+            <option value="">Please Select A Vehicle Type</option>
+
+            <?php showVehicleTypesBookingDetails();?>
+
+      </select>
+      <br>
+      <div class="form-group">
+        <label for="user_make">If you have chosen other, please enter a vehicle make:</label>
+        <input type="text" name="user_make" class="form-control" id="user_make">
+      </div>
       <div class="form-group">
         <label for="license_number">Vehicle License Number:</label>
         <input type="text" name="license_number" class="form-control" id="license_number">

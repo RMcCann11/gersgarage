@@ -32,6 +32,38 @@ DELIMITER;
 
 }
 
+//Used to dynamically pull vehicle types from database
+function showVehicleTypesBookingDetails(){
+
+    // Credentials
+    $dbhost = 'localhost:3307';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'gersgarage';
+
+    // Create a database connection
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+   // create SQL statement
+   $sql = "SELECT * FROM vehicle_type";
+   
+   // Query database
+   $result = mysqli_query($connection, $sql);
+
+   while($row = mysqli_fetch_assoc($result)){
+
+$vehicleTypeOptions = <<<DELIMITER
+
+<option value="{$row["vehicle_type_id"]}">{$row["name"]}</option>    
+
+DELIMITER;
+
+   echo $vehicleTypeOptions;
+
+   }
+
+}
+
 //Used to dynamically pull product details from database
 function showProductsBookingDetails(){
 
