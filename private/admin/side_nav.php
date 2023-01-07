@@ -12,10 +12,10 @@
                     </li>
                     
                     <li>
-                        <a href="index.php?bookings_for_assignment_of_parts"><i class="fa fa-fw fa-desktop"></i> Assign Parts To a Booking</a>
+                        <a href="index.php?bookings_for_assignment_of_parts"><i class="fa fa-fw fa-desktop"></i> Allocate Costs To a Booking</a>
                     </li>
                     <li>
-                        <a href="index.php?bookings_for_printing_of_invoice"><i class="fa fa-fw fa-desktop"></i> Print an Invoice</a>
+                        <a href="index.php?bookings_for_printing_of_invoice"><i class="fa fa-fw fa-desktop"></i> Generate an Invoice For A Booking</a>
                     </li>
                     <li>
                         <a href="index.php?bookings_for_changing_of_booking_status"><i class="fa fa-fw fa-wrench"></i> Change The Status Of a Booking</a>
