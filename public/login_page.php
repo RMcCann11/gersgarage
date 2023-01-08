@@ -4,6 +4,7 @@
 session_start();
 
 include '../private/db_connection.php';
+include 'functions.php';
 
 //Check to see if the form (login section) has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -20,19 +21,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // count the number of records found
     $count = mysqli_num_rows($result);
-    $userRole = $row['user_role'];
 
-// If result matched $username and $pass, table row must be 1 row
-    // If user role is customer redirect to public home page
-    if ($count > 0 && $userRole == 'customer') {
-        $_SESSION['loggedin_user'] = $row['user_name'];
-        header('Location: index.php');
-        // If user role is admin redirect to admin area
-    } else if ($count > 0 && $userRole == 'admin') {
-        $_SESSION['loggedin_user'] = $row['user_name'];
-        header('Location: ../private/admin/index.php');
-    } else {
-        $error = "Your Login Name or Password is invalid";
+    if ($count > 0) {
+    
+        $userRole = $row['user_role'];
+
+    // If result matched $username and $pass, table row must be 1 row
+        // If user role is customer redirect to public home page
+        if ($count > 0 && $userRole == 'customer') {
+            $_SESSION['loggedin_user'] = $row['user_name'];
+            header('Location: index.php');
+            // If user role is admin redirect to admin area
+        } else if ($count > 0 && $userRole == 'admin') {
+            $_SESSION['loggedin_user'] = $row['user_name'];
+            header('Location: ../private/admin/index.php');
+        } else {
+            $error = "Your Login Name or Password is invalid";
+        }
+
     }
 
 }
