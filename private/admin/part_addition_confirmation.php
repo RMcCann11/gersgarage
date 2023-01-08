@@ -16,7 +16,6 @@ include 'header.php';
     <p></p>
 
 <?php
-
 # Get passed product id and assign it to a variable.
 if ( isset( $_GET['partId'] ) ) $id = $_GET['partId'] ; 
 
@@ -32,15 +31,13 @@ if ( mysqli_num_rows( $r ) == 1 )
   { 
     # Add one more of this product.
     $_SESSION['cart'][$id]['quantity']++; 
-    echo '<p>Another '.$row["name"].' has been added to your cart.</p>';
-    print_r($_SESSION);
+    echo '<p>Another '.$row["name"].' has been added to your cart.</p>'; 
   } 
   else
   {
     # Or add one of this product to the cart.
     $_SESSION['cart'][$id]= array ( 'quantity' => 1, 'price' => $row['price'] ) ;
-    echo '<p>A '.$row["name"].' has been added to your cart</p>.' ;
-    print_r($_SESSION);
+    echo '<p>A '.$row["name"].' has been added to your cart</p>.' ; 
   }
 }
 
