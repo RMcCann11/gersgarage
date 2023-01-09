@@ -503,6 +503,13 @@ DELIMITER;
 //Used to retrieve the details of all bookings as per a date range
 function getBookingsByDateRange($startDate, $endDate){
 
+    if($endDate < $startDate) {
+
+        echo "<p style='color:red;text-align:center;'>Please ensure the date you provided for the start date is before the date you provided for the end date.</p>";
+
+    } else {
+
+
     // Credentials
     $dbhost = 'localhost:3307';
     $dbuser = 'root';
@@ -558,6 +565,8 @@ echo $bookings;
         }   
 
  }  
+
+}
 
 }
 
