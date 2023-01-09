@@ -28,17 +28,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // If result matched $username and $pass, table row must be 1 row
         // If user role is customer redirect to public home page
-        if ($count > 0 && $userRole == 'customer') {
+        if ($userRole == 'customer') {
             $_SESSION['loggedin_user'] = $row['user_name'];
             header('Location: index.php');
             // If user role is admin redirect to admin area
-        } else if ($count > 0 && $userRole == 'admin') {
+        } if ($userRole == 'admin') {
             $_SESSION['loggedin_user'] = $row['user_name'];
             header('Location: ../private/admin/index.php');
-        } else {
-            $error = "Your Login Name or Password is invalid";
-        }
+        } 
 
+    } else {
+        $error = "The Username and/or Password you entered is invalid";
+        setMessage($error);
     }
 
 }
@@ -68,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="row">
         <div class="col-sm-6 offset-sm-3" style="background-color:rgb(236, 236, 112);">
+        <h2 class = "bg-success text-center"><?php displayMessage(); ?></h2>
         <p id="red" style="text-align: center;">Please enter your login details below.</p>
 
 <div class="login-clean">
