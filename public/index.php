@@ -52,12 +52,6 @@ The following lines of code (lines 45 to 68 have) have been sourced from https:/
           <ul class="navbar-nav mr-auto mt-2 mt-md-0">
 
             <li class="nav-item">
-              <a class="nav-link" href="about.php">About Us<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="review.php">Customer Reviews<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="./user_account.php?userId=<?php echo $userId; ?>">My Account<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">

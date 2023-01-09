@@ -44,12 +44,6 @@ $userName = $row['user_name'];
               <a class="nav-link" href="index.php">Make A Booking<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.php">About Us<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="review.php">Customer Reviews<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="logout.php">Logout<span class="sr-only">(current)</span></a>
             </li>
           </ul>

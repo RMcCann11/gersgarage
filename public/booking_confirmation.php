@@ -71,12 +71,6 @@ $bookingSlot = $row['booking_slot'];
               <a class="nav-link" href="index.php">Make A Booking<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.php">About Us<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="review.php">Customer Reviews<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="./user_account.php?userId=<?php echo $userId;?>">My Account<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
