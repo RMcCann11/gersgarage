@@ -37,9 +37,6 @@ if ($count > 0) {
   <link rel="stylesheet" href="css/my_style.css">
   <link rel="stylesheet" href="css/calendar_style.css">
 </head>
-<!--
-The following lines of code (lines 45 to 68 have) have been sourced from https://hackerthemes.com/bootstrap-cheatsheet/#collapse__navbar-collapse
--->
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -75,6 +72,11 @@ The following lines of code (lines 45 to 68 have) have been sourced from https:/
 <br>
   <div class="row">
           <div class="col-sm-6 offset-sm-3" >
+
+<!-- 
+Please note lines 84 - 127 have been taken from the following source:
+
+Code-boxx. (2022) ‘Simple Appointment Booking With PHP MySQL (Free Download)’, code-boxx, 27 September 2022. Available at: https://code-boxx.com/appointment-booking-php-mysql [Accessed 06 December 2022] -->          
 
 <?php
 // (A) LOAD BOOKING + INIT

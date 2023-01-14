@@ -15,6 +15,11 @@ include 'header.php';
 
     <p></p>
 
+<!-- 
+Please note lines 23 - 76 have been taken from the following source:
+
+McGrath, Mike (2018) PHP and MySQL in Easy Steps, 2nd edn. Warwickshire: Easy Steps Limited. -->
+
     <?php
 
     # Check if form has been submitted for update.

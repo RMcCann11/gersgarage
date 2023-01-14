@@ -14,6 +14,10 @@ include 'header.php';
     <div class="container-fluid">
 
     <p></p>
+<!-- 
+Please note lines 22 - 48 have been taken from the following source:
+
+McGrath, Mike (2018) PHP and MySQL in Easy Steps, 2nd edn. Warwickshire: Easy Steps Limited. -->
 
 <?php
 # Get passed product id and assign it to a variable.
